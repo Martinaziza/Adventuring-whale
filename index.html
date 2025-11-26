@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+     <title>Adventuring Whale</title>
+</head>
+<body>
+<main>
+
+    <!-- GAME INTRO SCREEN -->
+    <div id="game-intro">
+<img src="Images/9021.jpg">
+<br>
+<h1>Adventuring Whale</h1> 
+<p> Eat the fish and avoid the boats!</p>
+<button id="start-button">Start game</button>
+</div>
+
+<!-- GAME CONTAINER SCREEN -->
+    <div id="game-container">
+        <div id="stats">
+            <p><strong>Score: <span id="score">0</span></p>
+            <p>Lives: <span id="lives">3</span></p></strong>
+        </div>
+        <div id="game-screen">
+        </div>
+    </div>
+    
+    <!-- GAME END SCREEN -->
+<div id="game-end">
+    <h1>Game Over</h1>
+    <br>
+    <button id="restart-button">Restart</button>
+</div>
+</main>   
+<script src="JS/script.js"></script>
+</body>
+</html>

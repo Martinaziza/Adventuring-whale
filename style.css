@@ -1,0 +1,70 @@
+body{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+#game-intro {
+      background-color: rgb(6, 6, 50);
+      height: 100vh;
+      color: white;
+      font-family: "Shadows Into Light", cursive;
+      font-size: xx-large;
+}
+
+#game-intro img{
+    width: 60%;
+    padding: 30px 80px 10px 80px;
+}
+
+h1, p {
+    margin: 0;
+    padding: 0 0 20px 0;
+}
+
+#start-button {
+background-color: 
+hsl(332, 52%, 56%);
+color:white;
+font-size: 25px;
+padding: 10px 30px;
+border:1px solid black;
+border-radius: 5px;
+}
+
+#game-container {
+   display: none;
+   width:90vw;
+   height: 100vh;
+   padding: 20px;
+   background-color: rgb(6, 6, 50);
+   color: white;
+}
+
+#stats {
+    padding: 0 15px;
+    display: inline-flex;
+    gap: 28px;
+    align-items: center;
+    font-size: large;
+}
+
+#game-screen {
+    background-image: url("Images/wave-background.jpg");
+    width: 90vw;
+    height: 60vh;
+    background-size: cover;
+}
+
+#game-end {
+    display: none;
+    background-color: rgb(6, 6, 50);
+    color: white;
+    height: 100vh;  
+}
+
+#game-end button {
+    font-size: 25px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
