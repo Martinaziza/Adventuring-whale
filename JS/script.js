@@ -8,5 +8,7 @@ window.onload = function () {
 
   function startGame(){
     console.log("start game!")
+    const ourNewGame = new Game()
+    ourNewGame.start()
   }
 }
