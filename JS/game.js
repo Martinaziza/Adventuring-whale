@@ -1,9 +1,11 @@
 class Game {
   constructor() {
     this.startScreen = document.getElementById("game-intro");
-    this.gameContainer = document.getElementById("game-container");
+    this.gameScreen = document.getElementById("game-screen");
     this.endScreen = document.getElementById("game-end");
-    this.player = null; //player will be another class
+    this.statsElement = document.getElementById("stats")
+    //player is another class
+    this.player = new Player (this.gameScreen, 250, 150 ); 
     //game screen height and width (adjust the numbers)
     // I have these on the CSS do I need to have them here as well? Also does JS override CSS
     this.height = 60;
@@ -17,10 +19,12 @@ class Game {
   }
 
   start() {
-    this.gameContainer.style.height = `${this.height}vh`;
-    this.gameContainer.style.width = `${this.width}vw`;
+    this.gameScreen.style.height = `${this.height}vh`;
+    this.gameScreen.style.width = `${this.width}vw`;
     this.startScreen.style.display = "none";
-    this.gameContainer.style.display = "block";
+    this.gameScreen.style.display = "block";
+    this.statsElement.style.display = "flex"
+
     //create the setInterval
     this.gameInvtervalId = setInterval(() => {
       this.gameLoop();
