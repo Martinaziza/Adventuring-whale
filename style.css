@@ -3,12 +3,12 @@ body{
     padding: 0;
     margin: 0;
     background-color:  rgb(6, 6, 50) ;
+    font-family: "Shadows Into Light", cursive;
 }
 
 #game-intro {
       height: 90vh;
       color: white;
-      font-family: "Shadows Into Light", cursive;
       font-size: xx-large;
 }
 
@@ -23,8 +23,7 @@ h1, p {
 }
 
 #start-button {
-background-color: 
-hsl(332, 52%, 56%);
+background-color: hsl(332, 52%, 56%);
 color:white;
 font-size: 25px;
 padding: 10px 30px;
@@ -40,10 +39,14 @@ border-radius: 5px;
    color: white;
 }
 
+#stats p {
+    font-size: 28px;
+}
+
 #stats {
     display: none;
     padding: 0 15px;
-    gap: 28px;
+    gap: 40px;
     align-items: center;
     font-size: large;
 }
@@ -57,11 +60,13 @@ border-radius: 5px;
 #game-end {
     display: none;
     color: white;
-    height: 100vh;  
+    font-size: xx-large;
 }
 
 #game-end button {
     font-size: 25px;
     border-radius: 5px;
     padding: 5px 10px;
+    background-color: hsl(332, 52%, 56%);
+    color: white;
 }

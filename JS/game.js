@@ -12,6 +12,7 @@ class Game {
     this.height = 60;
     this.width = 90;
     this.obstacles = [];
+    this.collectibles = [];
     this.score = 0;
     this.lives = 3;
     this.gameIsOver = false;
@@ -55,8 +56,8 @@ class Game {
         //removes from html
         currentObstacle.element.remove();
         //this.score not working yet
-        this.score ++;
-        this.scoreElement.innterText = this.score;
+        this.score += currentObstacle.strength;
+        this.scoreElement.textContent = this.score;
       }
       //check for collision for each obstacle
       if(this.player.didCollide(currentObstacle)){
@@ -72,11 +73,42 @@ class Game {
       }
     }
 
+for (let i = 0; i < this.collectibles.length; i++) {
+      const currentCollectible = this.collectibles[i];
+      currentCollectible.move();
+      if (currentCollectible.left < 0 - 100) {
+        //removes from array
+        this.collectibles.splice(i, 1);
+        //removes from html
+        currentCollectible.element.remove();
+      }
+      //check for collision for each obstacle
+      if(this.player.didCollide(currentCollectible)){
+         //removes from array
+        this.collectibles.splice(i, 1);
+        //removes from html
+        currentCollectible.element.remove();
+        this.lives+= currentCollectible.livesEarned;
+        this.livesElement.innerText = this.lives;
+        if (this.lives >= 6){
+         this.lives = 7   
+        }
+      }
+    }
+
 //add a new obstacle  after tot seconds
 if(this.counter % 180 === 0){
-    this.obstacles.push(new Obstacle(this.gameScreen))
+    //this.obstacles.push(new Obstacle(this.gameScreen, "../Images/obstacle level 1.png", 5))
+   //this.obstacles.push(new Obstacle(this.gameScreen, "../Images/obstacle level 2.png", 10))
+    //this.obstacles.push(new Obstacle(this.gameScreen, "../Images/obstacle level 3.png", 15))
+}
+if(this.counter % 270 === 2){
+  //this.collectibles.push(new Collectible(this.gameScreen, "../Images/life 1.png", 1))
+   //this.collectibles.push(new Collectible(this.gameScreen, "../Images/life 2.png", 2))
+    this.collectibles.push(new Collectible(this.gameScreen, "../Images/life 3.png", 3))
 }
   }
+
 
   gameOver() {
     this.gameScreen.style.display = "none";
