@@ -1,12 +1,12 @@
 class Collectible {
   //left and top sets the image on the screen
   //width and height is the size of the image
-  constructor(gameScreen, imagePath, livesEarned) {
+  constructor(gameScreen, width, height, livesEarned, imagePath) {
     this.gameScreen = gameScreen;
     this.left = 700;
-    this.top = Math.floor(Math.random() * 300 + 100);
-    this.width = 170;
-    this.height = 60;
+    this.top = Math.floor(Math.random() * 220 + 120);
+    this.width = width;
+    this.height = height;
     this.livesEarned = livesEarned
     //create img tag for the obstacle
     this.element = document.createElement("img");

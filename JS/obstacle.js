@@ -1,13 +1,15 @@
 class Obstacle {
   //left and top sets the image on the screen
   //width and height is the size of the image
-  constructor(gameScreen, imagePath, strength) {
+  constructor(gameScreen, width, height, points, strength, imagePath) {
     this.gameScreen = gameScreen;
-    this.left = 700;
-    this.top = Math.floor(Math.random() * 300 + 100);
-    this.width = 170;
-    this.height = 60;
-    this.strength = strength
+    this.left = 550;
+    this.top = Math.floor(Math.random() * (220) +120); 
+    this.width = width;
+    this.height = height;
+    this.points = points;
+    this.strength = strength;
+    //this.health = health
     //create img tag for the obstacle
     this.element = document.createElement("img");
     this.element.src = imagePath;
@@ -20,7 +22,7 @@ class Obstacle {
   }
   //change direction (change top and left #)
   move (){
-this.left += -3
+this.left += -2
 this.updatePosition()
   }
   //change pic on the page to go to numbers in move method

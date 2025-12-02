@@ -33,6 +33,10 @@ window.onload = function () {
         console.log("right");
       ourNewGame.player.directionY = 3;
     }
+
+    if (event.code === "Space"){
+      ourNewGame.shoot()
+    }
   });
 window.addEventListener("keyup", (event) => {
     if (event.code === "ArrowRight") {

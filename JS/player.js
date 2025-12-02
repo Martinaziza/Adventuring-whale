@@ -30,11 +30,11 @@ if (this.left < 50){
 if (this.left + 150 > 600){
     this.left = 450
 }
-if (this.top < 95) {
-    this.top = 95
+if (this.top < 110) {
+    this.top = 110
 }
-if (this.top + 75 > 450 ){
-    this.top = 375
+if (this.top + 60 > 400 ){
+    this.top = 340
 }
 
 this.updatePosition()

@@ -7,12 +7,13 @@ class Game {
     this.livesElement = document.getElementById("lives");
     this.scoreElement = document.getElementById("score")
     //player is another class
-    this.player = new Player(this.gameScreen, 50, 200, 150, 75);
+    this.player = new Player(this.gameScreen, 50, 200, 120, 60);
     //game screen height and width (adjust the numbers)
-    this.height = 60;
-    this.width = 90;
+    this.height = 300;
+    this.width = 600;
     this.obstacles = [];
     this.collectibles = [];
+    this.bullets = [];
     this.score = 0;
     this.lives = 3;
     this.gameIsOver = false;
@@ -22,8 +23,8 @@ class Game {
   }
 
   start() {
-    this.gameScreen.style.height = `${this.height}vh`;
-    this.gameScreen.style.width = `${this.width}vw`;
+    this.gameScreen.style.height = `${this.height}px`;
+    this.gameScreen.style.width = `${this.width}px`;
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.statsElement.style.display = "flex";
@@ -48,15 +49,20 @@ class Game {
   update() {
     this.player.move();
     for (let i = 0; i < this.obstacles.length; i++) {
-      const currentObstacle = this.obstacles[i];
-      currentObstacle.move();
+        const currentObstacle = this.obstacles[i];
+        currentObstacle.move();
+        //bullet movement
+        this.bullets.forEach((bullet) => {
+            bullet.move()
+        
+        })
       if (currentObstacle.left < 0 - 100) {
         //removes from array
         this.obstacles.splice(i, 1);
         //removes from html
         currentObstacle.element.remove();
-        //this.score not working yet
-        this.score += currentObstacle.strength;
+        //+1 when passing 
+        this.score ++;
         this.scoreElement.textContent = this.score;
       }
       //check for collision for each obstacle
@@ -65,13 +71,19 @@ class Game {
         this.obstacles.splice(i, 1);
         //removes from html
         currentObstacle.element.remove();
-        this.lives --;
+        this.lives -= currentObstacle.strength;
         this.livesElement.innerText = this.lives;
+        
         if (this.lives === 0){
             this.gameIsOver = true;
         }
+        if(this.lives>= 7){
+            this.lives = 7
+        }
+
+  }
       }
-    }
+
 
 for (let i = 0; i < this.collectibles.length; i++) {
       const currentCollectible = this.collectibles[i];
@@ -90,28 +102,58 @@ for (let i = 0; i < this.collectibles.length; i++) {
         currentCollectible.element.remove();
         this.lives+= currentCollectible.livesEarned;
         this.livesElement.innerText = this.lives;
-        if (this.lives >= 6){
-         this.lives = 7   
-        }
-      }
+  }
+
     }
 
-//add a new obstacle  after tot seconds
-if(this.counter % 180 === 0){
-    //this.obstacles.push(new Obstacle(this.gameScreen, "../Images/obstacle level 1.png", 5))
-   //this.obstacles.push(new Obstacle(this.gameScreen, "../Images/obstacle level 2.png", 10))
-    //this.obstacles.push(new Obstacle(this.gameScreen, "../Images/obstacle level 3.png", 15))
+    
+    
+    //random spanning an obstacle
+    const obstacleOptions = [
+        {width: 140, height: 50, points: 5, strength: 1, imagePath:"../Images/obstacle level 1.png"},
+        {width: 140, height: 50, points: 10, strength: 2, imagePath: "../Images/obstacle level 2.png"},
+        {width: 130, height: 45, points: 15, strength: 3, imagePath: "../Images/obstacle level 3.png"}
+    ]
+    
+    const randomIndex = Math.floor(Math.random()* obstacleOptions.length)
+    const option = obstacleOptions[randomIndex];
+    
+    if (this.counter % 300 === 0){
+        this.obstacles.push(new Obstacle (
+            this.gameScreen,
+            option.width, 
+            option.height, 
+            option.points, 
+            option.strength,
+            option.imagePath
+        ))}
+        
+        const collectibleOptions = [
+            {width: 100, height: 60, livesEarned: 1, imagePath: "../Images/life 1.png"},
+            {width: 90, height: 50, livesEarned: 2, imagePath: "../Images/life 2.png"},
+            {width: 60, height: 60, livesEarned: 3, imagePath: "../Images/life 3.png"}
+        ]
+        
+        const randomCollectible = Math.floor(Math.random()* collectibleOptions.length)
+        const currentOption = collectibleOptions[randomCollectible];
+        
+if (this.counter % 420 === 0){
+    this.collectibles.push(new Collectible (
+        this.gameScreen,
+        currentOption.width, 
+        currentOption.height, 
+        currentOption.livesEarned, 
+        currentOption.imagePath
+    ))};
+    
 }
-if(this.counter % 270 === 2){
-  //this.collectibles.push(new Collectible(this.gameScreen, "../Images/life 1.png", 1))
-   //this.collectibles.push(new Collectible(this.gameScreen, "../Images/life 2.png", 2))
-    this.collectibles.push(new Collectible(this.gameScreen, "../Images/life 3.png", 3))
-}
-  }
+ shoot (){
+this.bullets.push(new Bullet(this.gameScreen, this.player.left, this.player.top, this.player.width, this.player.height))
+ }
 
 
   gameOver() {
     this.gameScreen.style.display = "none";
     this.endScreen.style.display = "block"
-  }
+  };
 }
