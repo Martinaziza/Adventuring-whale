@@ -1,6 +1,6 @@
 # Adventuring Whale
 <!-- <link> -->
-[Play the game!] (https://martinaziza.github.io/Adventuring-whale/)
+[Play the game!](https://martinaziza.github.io/Adventuring-whale/)
 
 ## Description
 In this game, you are a whale trying to either avoid boats or shoot them. Use the arrows to move up and down and the spacebar to shoot a water bullet. Different types of boats will give you different amount of points when defeated. Eat the fish to regain lives. 
@@ -10,12 +10,13 @@ In this game, you are a whale trying to either avoid boats or shoot them. Use th
 - player (whale)
 - obstacle (boat)
 - when lives = 0, game over
+- when obstacles avoided, increase score by 1
 
 ## Backlog
 <!-- extra features -->
 - different type of obstacles (boats)
 - different points for different obstacles defeated
-- shooting obstacles
+- shooting obstacles (removed increase score by 1 if obstacle avoided)
 - different strength for different obstacles (have to shoot more than once to defeat)
 -  lives (fish)
 - different fish give different amount of lives
@@ -25,7 +26,8 @@ In this game, you are a whale trying to either avoid boats or shoot them. Use th
 - loads the game
 - starts the game 
 - restarts the game (restart button on game over screen)
-- event listeners - tells the arrows to move and the spacebar to shoot
+- event listeners 
+    - tells the arrows to move and the spacebar to shoot
 
 ### Game.js
  - constructor 
