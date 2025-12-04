@@ -11,7 +11,7 @@ class Player {
     this.directionY = 0;
     //create img tag for the player
     this.element = document.createElement("img");
-    this.element.src = "../Images/whale player 1.png";
+    this.element.src = "Images/whale player 1.png";
     this.element.style.width = `${this.width}px`;
     this.element.style.height = `${this.height}px`;
     this.element.style.left = `${this.left}px`

@@ -7,7 +7,7 @@ this.width = 40
 this.height = 20
 
 this.element = document.createElement("img");
-    this.element.src = "../Images/water bullet.png" ;
+    this.element.src = "Images/water bullet.png" ;
     this.element.style.width = `${this.width}px`;
     this.element.style.height = `${this.height}px`;
     this.element.style.left = `${this.left}px`

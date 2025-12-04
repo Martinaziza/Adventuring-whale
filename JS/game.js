@@ -134,9 +134,9 @@ for (let i = 0; i < this.collectibles.length; i++) {
     
     //random spanning an obstacle
     const obstacleOptions = [
-        {width: 140, height: 50, points: 5, strength: 1, imagePath:"../Images/obstacle level 1.png"},
-        {width: 140, height: 50, points: 10, strength: 2, imagePath: "../Images/obstacle level 2.png"},
-        {width: 130, height: 45, points: 15, strength: 3, imagePath: "../Images/obstacle level 3.png"}
+        {width: 140, height: 50, points: 5, strength: 1, imagePath:"Images/obstacle level 1.png"},
+        {width: 140, height: 50, points: 10, strength: 2, imagePath: "Images/obstacle level 2.png"},
+        {width: 130, height: 45, points: 15, strength: 3, imagePath: "Images/obstacle level 3.png"}
     ]
     
     const randomIndex = Math.floor(Math.random()* obstacleOptions.length)
@@ -153,9 +153,9 @@ for (let i = 0; i < this.collectibles.length; i++) {
         ))}
         
         const collectibleOptions = [
-            {width: 100, height: 60, livesEarned: 1, imagePath: "../Images/life 1.png"},
-            {width: 90, height: 50, livesEarned: 2, imagePath: "../Images/life 2.png"},
-            {width: 60, height: 60, livesEarned: 3, imagePath: "../Images/life 3.png"}
+            {width: 100, height: 60, livesEarned: 1, imagePath: "Images/life 1.png"},
+            {width: 90, height: 50, livesEarned: 2, imagePath: "Images/life 2.png"},
+            {width: 60, height: 60, livesEarned: 3, imagePath: "Images/life 3.png"}
         ]
         
         const randomCollectible = Math.floor(Math.random()* collectibleOptions.length)
