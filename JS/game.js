@@ -95,8 +95,9 @@ class Game {
       this.lives -= currentObstacle.strength;
       this.livesElement.innerText = this.lives;
       
-      if (this.lives === 0){
+      if (this.lives <= 0){
           this.gameIsOver = true;
+          this.livesElement.innerText = "0";
       }
 
 }
