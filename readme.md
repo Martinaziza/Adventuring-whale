@@ -138,6 +138,5 @@ In this game, you are a whale trying to either avoid boats or shoot them. Use th
 
 ## Links
 <!-- slides -->
-
 <!-- gh repo -->
 <!-- deployment -->
