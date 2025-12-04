@@ -16,6 +16,7 @@ class Game {
     this.bullets = [];
     this.score = 0;
     this.lives = 3;
+    this.maxLives = 5;
     this.gameIsOver = false;
     this.gameInvtervalId;
     this.gameLoopFrequency = Math.round(1000 / 60);
@@ -52,37 +53,55 @@ class Game {
         const currentObstacle = this.obstacles[i];
         currentObstacle.move();
         //bullet movement
-        this.bullets.forEach((bullet) => {
-            bullet.move()
-        
-        })
-      if (currentObstacle.left < 0 - 100) {
-        //removes from array
-        this.obstacles.splice(i, 1);
-        //removes from html
-        currentObstacle.element.remove();
-        //+1 when passing 
-        this.score ++;
-        this.scoreElement.textContent = this.score;
-      }
-      //check for collision for each obstacle
-      if(this.player.didCollide(currentObstacle)){
-         //removes from array
-        this.obstacles.splice(i, 1);
-        //removes from html
-        currentObstacle.element.remove();
-        this.lives -= currentObstacle.strength;
-        this.livesElement.innerText = this.lives;
-        
-        if (this.lives === 0){
-            this.gameIsOver = true;
+        this.bullets.forEach((bullet, index) => {
+            bullet.move();
+        //bullet collision
+        const bulletRect = bullet.element.getBoundingClientRect();
+        const obstacleRect = currentObstacle.element.getBoundingClientRect();
+          if (
+      bulletRect.left < obstacleRect.right &&
+      bulletRect.right > obstacleRect.left &&
+      bulletRect.top < obstacleRect.bottom &&
+      bulletRect.bottom > obstacleRect.top
+    ) {
+        currentObstacle.strength--
+        this.bullets.splice(index, 1)
+        bullet.element.remove();
+        if (currentObstacle.strength <= 0){
+             this.obstacles.splice(i, 1)
+             currentObstacle.element.remove();
+             this.score += currentObstacle.points
+             this.scoreElement.textContent = this.score;
         }
-        if(this.lives>= 7){
-            this.lives = 7
-        }
+    } 
+    if (bullet.left > 600){
+        bullet.element.remove();
+        this.bullets.splice(index, 1)
+    }
+    })
 
-  }
+    if (currentObstacle.left < 0 - 100) {
+      //removes from array
+      this.obstacles.splice(i, 1);
+      //removes from html
+      currentObstacle.element.remove();
+    }
+    //check for collision for each obstacle
+    if(this.player.didCollide(currentObstacle)){
+       //removes from array
+      this.obstacles.splice(i, 1);
+      //removes from html
+      currentObstacle.element.remove();
+      this.lives -= currentObstacle.strength;
+      this.livesElement.innerText = this.lives;
+      
+      if (this.lives === 0){
+          this.gameIsOver = true;
       }
+
+}
+        }
+      
 
 
 for (let i = 0; i < this.collectibles.length; i++) {
@@ -104,6 +123,11 @@ for (let i = 0; i < this.collectibles.length; i++) {
         this.livesElement.innerText = this.lives;
   }
 
+    if (this.lives > this.maxLives){
+        this.lives = this.maxLives
+        this.livesElement.innerText = this.lives;
+      }
+
     }
 
     
@@ -118,7 +142,7 @@ for (let i = 0; i < this.collectibles.length; i++) {
     const randomIndex = Math.floor(Math.random()* obstacleOptions.length)
     const option = obstacleOptions[randomIndex];
     
-    if (this.counter % 300 === 0){
+    if (this.counter % 60 === 0){
         this.obstacles.push(new Obstacle (
             this.gameScreen,
             option.width, 
@@ -146,14 +170,14 @@ if (this.counter % 420 === 0){
         currentOption.imagePath
     ))};
     
-}
- shoot (){
-this.bullets.push(new Bullet(this.gameScreen, this.player.left, this.player.top, this.player.width, this.player.height))
- }
+}     
+shoot (){
+    this.bullets.push(new Bullet(this.gameScreen, this.player.left, this.player.top, this.player.width, this.player.height))
+};
 
+gameOver() {
+  this.gameScreen.style.display = "none";
+  this.endScreen.style.display = "block"
+};
 
-  gameOver() {
-    this.gameScreen.style.display = "none";
-    this.endScreen.style.display = "block"
-  };
 }

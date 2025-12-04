@@ -3,7 +3,7 @@ class Obstacle {
   //width and height is the size of the image
   constructor(gameScreen, width, height, points, strength, imagePath) {
     this.gameScreen = gameScreen;
-    this.left = 550;
+    this.left = 500;
     this.top = Math.floor(Math.random() * (220) +120); 
     this.width = width;
     this.height = height;
